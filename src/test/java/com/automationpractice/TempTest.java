@@ -43,10 +43,16 @@ public class TempTest {
         final Wait<WebDriver> wait = new WebDriverWait(chromeDriver, 5, 1000);
 
         chromeDriver.navigate().to(MAIN_PAGE_URL);
-        chromeDriver.findElement(By.xpath("//div [contains(@class,'dropdownBox')]")).click();
+        chromeDriver.findElement(By.xpath("//div[contains(@class,'dropdownBox')]")).click();
+        try{
+            new WebDriverWait(chromeDriver, 15).until(ExpectedConditions
+                    .visibilityOf( chromeDriver.findElement(By.xpath("//div[contains(@class,'menuItem')]/div[contains(@class,'menuItemContent')]")) ));
+        }catch (Exception e){
+            Assert.fail("Timeoouutt");
+        }
 //        String rrr = chromeDriver.findElement(By.xpath("//div[contains(@class,'menuItem')]/div[contains(@class,'menuItemContent')]")).getText();
         String rrr = chromeDriver.findElements(By.xpath("//div[contains(@class,'menuItem')]/div[contains(@class,'menuItemContent')]"))
-                .get(2).getText();
+                .get(3).getText();
 
         System.out.println(rrr);
 
