@@ -33,7 +33,7 @@ public class TempTest {
     private final String MAIN_PAGE_URL ="https://www.crazydomains.co.nz//";
 
     private ArrayList<String> getExpectedRegionList() {
-        ArrayList<String> expectedRegions = new ArrayList<>();
+        ArrayList<String> expectedRegions = new ArrayList<String>();
         expectedRegions.add("Global");
         expectedRegions.add("Australia");
         expectedRegions.add("Europe");
