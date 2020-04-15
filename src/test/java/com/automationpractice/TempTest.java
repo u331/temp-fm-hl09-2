@@ -50,8 +50,8 @@ public class TempTest {
 
     @Test
     public void myTestChrome(){
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
-//        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
+//        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
+        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
         ChromeOptions co = new ChromeOptions();
         co.addArguments("--headless");
         DesiredCapabilities cap = DesiredCapabilities.chrome();
@@ -63,11 +63,36 @@ public class TempTest {
         final Wait<WebDriver> wait = new WebDriverWait(chromeDriver, 5, 1000);
 
         chromeDriver.navigate().to(MAIN_PAGE_URL);
+
+        chromeDriver.navigate().to(MAIN_PAGE_URL);
+        System.out.println("//div[contains(@class,'dropdownBox')].getText(): "
+                + chromeDriver.findElement(By.xpath("//div[contains(@class,'dropdownBox')]")).getText());
+        System.out.println("//div[contains(@class,'dropdownBox')]_.getAttribute(onclick: "
+                + chromeDriver.findElement(By.xpath("//div[contains(@class,'dropdownBox')]")).getAttribute("onclick"));
+        System.out.println("//div[contains(@class,'dropdownBox')]_.getAttribute(onchange: "
+                + chromeDriver.findElement(By.xpath("//div[contains(@class,'dropdownBox')]")).getAttribute("onchange"));
+
         chromeDriver.findElement(By.xpath("//div[contains(@class,'dropdownBox')]")).click();
+
+        System.out.println("//div[contains(@class,'dropdownBox')].getText(): "
+                + chromeDriver.findElement(By.xpath("//div[contains(@class,'dropdownBox')]")).getText());
+        System.out.println("//div[contains(@class,'dropdownBox')]_.getAttribute(onclick: "
+                + chromeDriver.findElement(By.xpath("//div[contains(@class,'dropdownBox')]")).getAttribute("onclick"));
+        System.out.println("//div[contains(@class,'dropdownBox')]_.getAttribute(onchange: "
+                + chromeDriver.findElement(By.xpath("//div[contains(@class,'dropdownBox')]")).getAttribute("onchange"));
+
         try{
             new WebDriverWait(chromeDriver, 15).until(ExpectedConditions
                     .visibilityOf( chromeDriver.findElement(By.xpath("//div[contains(@class,'menuItem')]/div[contains(@class,'menuItemContent')]")) ));
         }catch (Exception e){
+
+            System.out.println("//div[contains(@class,'dropdownBox')].getText(): "
+                    + chromeDriver.findElement(By.xpath("//div[contains(@class,'dropdownBox')]")).getText());
+            System.out.println("//div[contains(@class,'dropdownBox')]_.getAttribute(onclick: "
+                    + chromeDriver.findElement(By.xpath("//div[contains(@class,'dropdownBox')]")).getAttribute("onclick"));
+            System.out.println("//div[contains(@class,'dropdownBox')]_.getAttribute(onchange: "
+                    + chromeDriver.findElement(By.xpath("//div[contains(@class,'dropdownBox')]")).getAttribute("onchange"));
+
             Assert.fail("Timeoouutt");
         }
         ArrayList<String> regions = new ArrayList<String>();
