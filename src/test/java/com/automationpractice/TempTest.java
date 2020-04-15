@@ -17,6 +17,8 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -30,7 +32,11 @@ public class TempTest {
     @Test
     public void myTestChrome(){
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
-        WebDriver chromeDriver = new ChromeDriver();
+        ChromeOptions co = new ChromeOptions();
+        co.addArguments("--headless");
+        DesiredCapabilities cap = DesiredCapabilities.chrome();
+        cap.setCapability(ChromeOptions.CAPABILITY, co);
+        WebDriver chromeDriver = new ChromeDriver(co);
         chromeDriver.manage().timeouts().pageLoadTimeout(50, TimeUnit.SECONDS);
         chromeDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 //        chromeDriver.manage().timeouts().setScriptTimeout(10, TimeUnit.SECONDS);
