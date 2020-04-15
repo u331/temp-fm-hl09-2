@@ -15,6 +15,7 @@ package com.automationpractice;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -59,7 +60,7 @@ public class TempTest {
         WebDriver chromeDriver = new ChromeDriver(co);
         chromeDriver.manage().timeouts().pageLoadTimeout(50, TimeUnit.SECONDS);
         chromeDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-//        chromeDriver.manage().timeouts().setScriptTimeout(10, TimeUnit.SECONDS);
+        chromeDriver.manage().timeouts().setScriptTimeout(10, TimeUnit.SECONDS);
         final Wait<WebDriver> wait = new WebDriverWait(chromeDriver, 5, 1000);
 
         chromeDriver.navigate().to(MAIN_PAGE_URL);
@@ -72,7 +73,9 @@ public class TempTest {
         System.out.println("//div[contains(@class,'dropdownBox')]_.getAttribute(onchange: "
                 + chromeDriver.findElement(By.xpath("//div[contains(@class,'dropdownBox')]")).getAttribute("onchange"));
 
-        chromeDriver.findElement(By.xpath("//div[contains(@class,'dropdownBox')]")).click();
+//        chromeDriver.findElement(By.xpath("//div[contains(@class,'dropdownBox')]")).click();
+        JavascriptExecutor executor = (JavascriptExecutor)chromeDriver;
+        executor.executeScript("arguments[0].click();", chromeDriver.findElement(By.xpath("//div[contains(@class,'dropdownBox')]")));
 
         System.out.println("//div[contains(@class,'dropdownBox')].getText(): "
                 + chromeDriver.findElement(By.xpath("//div[contains(@class,'dropdownBox')]")).getText());
@@ -99,9 +102,6 @@ public class TempTest {
         for (WebElement aREGIONS_DROP_DOWN_ITEMS_LIST : chromeDriver.findElements(By.xpath("//div[contains(@class,'menuItem')]/div[contains(@class,'menuItemContent')]"))) {
             regions.add(aREGIONS_DROP_DOWN_ITEMS_LIST.getText());
         }
-        String forthRegion = chromeDriver.findElements(By.xpath("//div[contains(@class,'menuItem')]/div[contains(@class,'menuItemContent')]"))
-                .get(3).getText();
-        System.out.println("the forthRegion are: " +  forthRegion);
         Assert.assertEquals( regions ,getExpectedRegionList());
     }
 }
