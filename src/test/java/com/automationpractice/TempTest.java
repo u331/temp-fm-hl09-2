@@ -70,7 +70,7 @@ public class TempTest {
         }catch (Exception e){
             Assert.fail("Timeoouutt");
         }
-        ArrayList<String> regions = new ArrayList<>();
+        ArrayList<String> regions = new ArrayList<String>();
         for (WebElement aREGIONS_DROP_DOWN_ITEMS_LIST : chromeDriver.findElements(By.xpath("//div[contains(@class,'menuItem')]/div[contains(@class,'menuItemContent')]"))) {
             regions.add(aREGIONS_DROP_DOWN_ITEMS_LIST.getText());
         }
