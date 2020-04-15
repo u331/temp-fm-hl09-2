@@ -29,7 +29,8 @@ public class Task02Test {
 
     @Test
     public void myTestChrome(){
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
+        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
+//        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
         WebDriver chromeDriver = new ChromeDriver();
         chromeDriver.manage().timeouts().pageLoadTimeout(50, TimeUnit.SECONDS);
         chromeDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);

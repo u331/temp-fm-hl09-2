@@ -16,6 +16,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -23,15 +24,34 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 public class TempTest {
 //    private final String MAIN_PAGE_URL ="http://automationpractice.com";
-    private final String MAIN_PAGE_URL ="https://www.crazydomains.com.au/";
+//    private final String MAIN_PAGE_URL ="https://www.crazydomains.com.au/";
+    private final String MAIN_PAGE_URL ="https://www.crazydomains.co.nz//";
+
+    private ArrayList<String> getExpectedRegionList() {
+        ArrayList<String> expectedRegions = new ArrayList<>();
+        expectedRegions.add("Global");
+        expectedRegions.add("Australia");
+        expectedRegions.add("Europe");
+        expectedRegions.add("Hong Kong");
+        expectedRegions.add("India");
+        expectedRegions.add("Indonesia");
+        expectedRegions.add("Malaysia");
+        expectedRegions.add("Philippines");
+        expectedRegions.add("Singapore");
+        expectedRegions.add("UAE");
+        expectedRegions.add("New Zealand");
+        return expectedRegions;
+    }
 
     @Test
     public void myTestChrome(){
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
+//        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
+        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
         ChromeOptions co = new ChromeOptions();
         co.addArguments("--headless");
         DesiredCapabilities cap = DesiredCapabilities.chrome();
@@ -50,17 +70,13 @@ public class TempTest {
         }catch (Exception e){
             Assert.fail("Timeoouutt");
         }
-//        String rrr = chromeDriver.findElement(By.xpath("//div[contains(@class,'menuItem')]/div[contains(@class,'menuItemContent')]")).getText();
-        String rrr = chromeDriver.findElements(By.xpath("//div[contains(@class,'menuItem')]/div[contains(@class,'menuItemContent')]"))
+        ArrayList<String> regions = new ArrayList<>();
+        for (WebElement aREGIONS_DROP_DOWN_ITEMS_LIST : chromeDriver.findElements(By.xpath("//div[contains(@class,'menuItem')]/div[contains(@class,'menuItemContent')]"))) {
+            regions.add(aREGIONS_DROP_DOWN_ITEMS_LIST.getText());
+        }
+        String forthRegion = chromeDriver.findElements(By.xpath("//div[contains(@class,'menuItem')]/div[contains(@class,'menuItemContent')]"))
                 .get(3).getText();
-
-        System.out.println(rrr);
-
-
-
-        //try {Thread.sleep(2000);} catch (InterruptedException e) {e.printStackTrace();}
-
-//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#center_column p.alert-warning")));
-        Assert.assertTrue(true);
+        System.out.println("the forthRegion are: " +  forthRegion);
+        Assert.assertEquals( regions ,getExpectedRegionList());
     }
 }
