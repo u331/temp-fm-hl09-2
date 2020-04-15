@@ -65,7 +65,8 @@ public class TempTest {
 
         chromeDriver.navigate().to(MAIN_PAGE_URL);
 
-        chromeDriver.navigate().to(MAIN_PAGE_URL);
+        try {Thread.sleep(120000);} catch (InterruptedException e) {e.printStackTrace();}
+
         System.out.println("//div[contains(@class,'dropdownBox')].getText(): "
                 + chromeDriver.findElement(By.xpath("//div[contains(@class,'dropdownBox')]")).getText());
         System.out.println("//div[contains(@class,'dropdownBox')]_.getAttribute(onclick: "
@@ -73,9 +74,11 @@ public class TempTest {
         System.out.println("//div[contains(@class,'dropdownBox')]_.getAttribute(onchange: "
                 + chromeDriver.findElement(By.xpath("//div[contains(@class,'dropdownBox')]")).getAttribute("onchange"));
 
-//        chromeDriver.findElement(By.xpath("//div[contains(@class,'dropdownBox')]")).click();
-        JavascriptExecutor executor = (JavascriptExecutor)chromeDriver;
-        executor.executeScript("arguments[0].click();", chromeDriver.findElement(By.xpath("//div[contains(@class,'dropdownBox')]")));
+        chromeDriver.findElement(By.xpath("//div[contains(@class,'dropdownBox')]")).click();
+//        JavascriptExecutor executor = (JavascriptExecutor)chromeDriver;
+//        executor.executeScript("arguments[0].click();", chromeDriver.findElement(By.xpath("//div[contains(@class,'dropdownBox')]")));
+
+        try {Thread.sleep(120000);} catch (InterruptedException e) {e.printStackTrace();}
 
         System.out.println("//div[contains(@class,'dropdownBox')].getText(): "
                 + chromeDriver.findElement(By.xpath("//div[contains(@class,'dropdownBox')]")).getText());
