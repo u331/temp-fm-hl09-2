@@ -51,8 +51,8 @@ public class TempTest {
 
     @Test
     public void myTestChrome(){
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
-//        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
+//        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
+        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
         ChromeOptions co = new ChromeOptions();
         co.addArguments("--headless");
         DesiredCapabilities cap = DesiredCapabilities.chrome();
@@ -69,9 +69,8 @@ public class TempTest {
 
         System.out.println( "scriptsInHead: " +  chromeDriver.findElements(By.cssSelector("head > script")).size() );
         System.out.println( "head script[src]: " +  chromeDriver.findElements(By.cssSelector("head script[src]")).size() );
-//        chromeDriver.findElements(By.cssSelector("head script[src]")).forEach(element -> System.out.println("scr: " + element.getAttribute("src")));
-        for(WebElement e: chromeDriver.findElements(By.cssSelector("head script[src]"))){
-            System.out.println("scr: " + e.getAttribute("src"));
+        for(int i = 0; i < chromeDriver.findElements(By.cssSelector("head script[src]")).size(); i++  ){
+            System.out.println( i + " : " + chromeDriver.findElements(By.cssSelector("head script[src]")).get(i).getAttribute("src"));
         }
         System.out.println( "<script>(96): " +  chromeDriver.findElement(By.cssSelector("head > script:nth-child(96)")).getAttribute("src") );
 
