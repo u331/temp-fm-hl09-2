@@ -65,14 +65,17 @@ public class TempTest {
 
         chromeDriver.navigate().to(MAIN_PAGE_URL);
         WebElement button = chromeDriver.findElement(By.xpath("//div[contains(@class,'dropdownBox')]"));
+        JavascriptExecutor executor = (JavascriptExecutor)chromeDriver;
 
-//        try {Thread.sleep(120000);} catch (InterruptedException e) {e.printStackTrace();}
+        System.out.println( "scriptsInHead: " +  chromeDriver.findElements(By.cssSelector("head > script")).size() );
+        System.out.println( "<script>(96): " +  chromeDriver.findElement(By.cssSelector("head > script:nth-child(96)")).getAttribute("src") );
+
+        //        try {Thread.sleep(120000);} catch (InterruptedException e) {e.printStackTrace();}
 
         System.out.println("//div[contains(@class,'dropdownBox')].getText(): " + button.getText());
         System.out.println("//div[contains(@class,'dropdownBox')]_.getAttribute(onclick: " + button.getAttribute("onclick"));
         System.out.println("//div[contains(@class,'dropdownBox')]_.getAttribute(onchange: " + button.getAttribute("onchange"));
 
-        JavascriptExecutor executor = (JavascriptExecutor)chromeDriver;
 //        executor.executeScript("arguments[0].click();", chromeDriver.findElement(By.xpath("//div[contains(@class,'dropdownBox')]")));
         executor.executeScript("show_dropdown_onclick(document.getElementsByClassName('dropdownBox'))");
 //        chromeDriver.findElement(By.xpath("//div[contains(@class,'dropdownBox')]")).click();
