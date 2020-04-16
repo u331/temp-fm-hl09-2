@@ -69,6 +69,7 @@ public class TempTest {
 
         System.out.println( "scriptsInHead: " +  chromeDriver.findElements(By.cssSelector("head > script")).size() );
         System.out.println( "head script[src]: " +  chromeDriver.findElements(By.cssSelector("head script[src]")).size() );
+        chromeDriver.findElements(By.cssSelector("head script[src]")).forEach(element -> System.out.println("scr: " + element.getAttribute("src")));
         System.out.println( "<script>(96): " +  chromeDriver.findElement(By.cssSelector("head > script:nth-child(96)")).getAttribute("src") );
 
         //        try {Thread.sleep(120000);} catch (InterruptedException e) {e.printStackTrace();}
