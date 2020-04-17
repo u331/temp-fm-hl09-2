@@ -25,7 +25,16 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class TempTest {
@@ -50,7 +59,7 @@ public class TempTest {
     }
 
     @Test
-    public void myTestChrome(){
+    public void myTestChrome() {
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver");
 //        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
         ChromeOptions co = new ChromeOptions();
@@ -63,9 +72,35 @@ public class TempTest {
         chromeDriver.manage().timeouts().setScriptTimeout(10, TimeUnit.SECONDS);
         final Wait<WebDriver> wait = new WebDriverWait(chromeDriver, 5, 1000);
 
+//        chromeDriver.navigate().to("https://d.impactradius-event.com/A1311145-40dd-4771-834b-2a01c657abe41.js");
+        chromeDriver.navigate().to("https://framework.dreamscape.cloud/dist/crazydomains/SecondaryLoad.bundle.js");
+//        System.out.println( ".size():" +  chromeDriver.findElements(By.xpath("//*[contains(text(),'show_dropdown_onclick')]")).size() );
+        System.out.println( ".size():" +  chromeDriver.findElements(By
+                .xpath("//*[contains(text(),'window.show_dropdown_onclick=o.a,window.redirect_to_account_manager=s.a')]")).size() );
+
+
+
         chromeDriver.navigate().to(MAIN_PAGE_URL);
         WebElement button = chromeDriver.findElement(By.xpath("//div[contains(@class,'dropdownBox')]"));
         JavascriptExecutor executor = (JavascriptExecutor)chromeDriver;
+
+
+//        List<String> lines = null;
+//        try {
+////            lines = Files.readAllLines(Paths.get("https://framework.dreamscape.cloud/dist/crazydomains/SecondaryLoad.bundle.js"), StandardCharsets.UTF_8);
+//            lines = Files.readAllLines(Paths.get("https://d.impactradius-event.com/A1311145-40dd-4771-834b-2a01c657abe41.js"), StandardCharsets.UTF_8);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        for(String line: lines){
+//            System.out.println(line);
+//        }
+//
+//        System.out.println("lines.size()" + lines.size());
+
+
+
+
 
 //        System.out.println( "scriptsInHead: " +  chromeDriver.findElements(By.cssSelector("head > script")).size() );
 //        System.out.println( "head script[src]: " +  chromeDriver.findElements(By.cssSelector("head script[src]")).size() );
